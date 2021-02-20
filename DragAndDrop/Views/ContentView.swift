@@ -6,10 +6,6 @@ struct ContentView: View {
 
     @ObservedObject var fileManager: FileManager
 
-    var showOhMy: Bool {
-        fileManager.isSortedProperly()
-    }
-
     init() {
         self.fileManager = FileManager.shared
     }
@@ -18,13 +14,6 @@ struct ContentView: View {
         VStack(spacing: 0) {
             ForEach(fileManager.folders, id: \.self) { folder in
                 FolderView(folder: folder)
-            }
-            if showOhMy {
-                VStack(alignment: .center) {
-                    Text("Oh my! 😱")
-                        .font(.title)
-                        .fontWeight(.bold)
-                }
             }
             Spacer()
         }

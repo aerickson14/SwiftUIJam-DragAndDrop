@@ -56,13 +56,6 @@ class FileManager: ObservableObject {
         updateFolder(folder)
     }
 
-    func isSortedProperly() -> Bool {
-        return folders[0].files.count == 0
-            && folders[1].files.contains(where: { $0.name == "🦁 Lion" })
-            && folders[2].files.contains(where: { $0.name == "🐯 Tiger" })
-            && folders[3].files.contains(where: { $0.name == "🐻 Bear" })
-    }
-
     private func add(file: File, to folder: Folder) {
         guard var folderToAddTo = folders.first(where: { $0 == folder }) else { return }
         print("adding \(file.name) to \(folder.name)")
