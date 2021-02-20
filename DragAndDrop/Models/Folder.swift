@@ -1,6 +1,7 @@
 import Foundation
 
-struct Folder: Hashable, Codable {
+struct Folder: Identifiable, Hashable, Codable {
+    var id = UUID() // TODO: var because Xcode complains about decoding, but this shouldnt be able to change
     let name: String
     var files: [File]
 

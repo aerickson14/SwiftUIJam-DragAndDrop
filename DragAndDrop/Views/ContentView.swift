@@ -4,20 +4,27 @@ import Foundation
 
 struct ContentView: View {
 
-    @State private var folders: [Folder]
+    @ObservedObject var fileManager: FileManager
+
+    var showOhMy: Bool {
+        fileManager.isSortedProperly()
+    }
 
     init() {
-        let folders: [Folder] = (1...3).map {
-            let files = (1...3).map { File(name: "file\($0).txt") }
-            return Folder(name: "Folder \($0)", files: files)
-        }
-        self._folders = State(initialValue: folders)
+        self.fileManager = FileManager.shared
     }
 
     var body: some View {
         VStack(spacing: 0) {
-            ForEach(folders, id: \.self) { folder in
+            ForEach(fileManager.folders, id: \.self) { folder in
                 FolderView(folder: folder)
+            }
+            if showOhMy {
+                VStack(alignment: .center) {
+                    Text("Oh my! 😱")
+                        .font(.title)
+                        .fontWeight(.bold)
+                }
             }
             Spacer()
         }

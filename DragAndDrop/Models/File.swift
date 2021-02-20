@@ -1,19 +1,15 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-final class File: NSObject, Codable {
+final class File: NSObject, Identifiable, Codable {
 
     static var droppableTypeIdentifiers = [UTType.fileURL.identifier]
 
+    var id = UUID()
     let name: String
-    var folder: Folder?
 
     init(name: String) {
         self.name = name
-    }
-
-    func add(to folder: Folder) {
-        self.folder = folder
     }
 }
 

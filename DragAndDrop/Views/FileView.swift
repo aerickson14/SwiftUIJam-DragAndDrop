@@ -5,7 +5,7 @@ struct FileView: View {
 
     var body: some View {
         HStack {
-            Image(systemName: "doc.plaintext")
+            //Image(systemName: "doc.plaintext")
             Text(fileName)
             Spacer()
         }

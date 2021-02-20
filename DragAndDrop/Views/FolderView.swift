@@ -2,32 +2,49 @@ import SwiftUI
 
 struct FolderView: View {
     @State private var folder: Folder
-    @State private var fileBeingDragged: File?
+    @State private var fileBeingDragged: File? {
+        didSet {
+            print("didSet fileBeingDragged: nil? \(fileBeingDragged == nil)")
+        }
+    }
 
     init(folder: Folder) {
         self._folder = State(initialValue: folder)
     }
 
     var body: some View {
+        VStack {
+            headerView
+                .onDrop(of: File.droppableTypeIdentifiers, delegate: FolderDropDelegate(folder: $folder))
+            filesView
+        }
+    }
+
+    // TODO: will the drop logic work on DisclosureGroup?
+    var disclosureGroup: some View {
         DisclosureGroup(
             content: {
-                ForEach(folder.files, id: \.self) { file in
-                    FileView(fileName: file.name)
-                        .onDrag({
-                            self.fileBeingDragged = file
-                            print("File being dragged: \(file.name)")
-                            return NSItemProvider(object: file)
-                        })
-                        .onDrop(
-                            of: File.droppableTypeIdentifiers,
-                            delegate: FileDropDelegate(dragging: $fileBeingDragged, in: $folder, over: file)
-                        )
-                }
-                .padding(.leading, 8)
+                filesView
             },
-            label: { headerView
-                .onDrop(of: File.droppableTypeIdentifiers, delegate: FolderDropDelegate(dragging: $fileBeingDragged, to: $folder)) }
+            label: { headerView }
         )
+        .onDrop(of: File.droppableTypeIdentifiers, delegate: FolderDropDelegate(folder: $folder))
+    }
+
+    var filesView: some View {
+        ForEach(folder.files, id: \.self) { file in
+            FileView(fileName: file.name)
+                .onDrag({
+                    self.fileBeingDragged = file
+                    print("File being dragged: \(file.name)")
+                    return NSItemProvider(object: file)
+                })
+                .onDrop(
+                    of: File.droppableTypeIdentifiers,
+                    delegate: FileDropDelegate(dragging: $fileBeingDragged, in: $folder, over: file)
+                )
+        }
+        .padding(.leading, 8)
     }
 
     var headerView: some View {
@@ -43,49 +60,62 @@ struct FolderView: View {
 
 struct FolderDropDelegate: DropDelegate {
 
-    @Binding var fileBeingDragged: File?
     @Binding var folder: Folder
 
-    init(dragging fileBeingDragged: Binding<File?>, to folder: Binding<Folder>) {
-        self._fileBeingDragged = fileBeingDragged
+    init(folder: Binding<Folder>) {
         self._folder = folder
     }
 
     func dropEntered(info: DropInfo) {
-        print("dropEntered")
-        guard
-            let file = fileBeingDragged,
-            var previousFolder = file.folder
-        else {
-            print("No file being dragged")
-            return
-        }
-        previousFolder.remove(file)
-        folder.add(file)
-//        guard info.hasItemsConforming(to: File.droppableTypeIdentifiers) else {
-//            print("no items found")
-//            return
-//        }
-//
-//        let itemProviders = info.itemProviders(for: File.droppableTypeIdentifiers)
-//        for itemProvider in itemProviders {
-//            print("itemProvider")
-//            _ = itemProvider.loadObject(ofClass: File.self) { file, _ in
-//                print("loadObject")
-//                guard let file = file as? File else { return }
-//
-//                DispatchQueue.main.async {
-//                    print("Inserting file \(file.name) into folder \(folder.name)")
-//                    folder.add(file)
-//                }
-//            }
-//        }
+        print("folder dropEntered")
+
+        // objects will not be able to be loaded/found at this point
+        //moveFileToFolder(using: info)
+    }
+
+    func validateDrop(info: DropInfo) -> Bool {
+        print("validateDrop")
+        return true
+    }
+
+    func dropExited(info: DropInfo) {
+        print("dropExited")
+    }
+
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        //print("dropUpdated")
+        return DropProposal(operation: .move)
     }
 
     func performDrop(info: DropInfo) -> Bool {
         print("peformDrop")
-
+        moveFileToFolder(using: info)
         return true
+    }
+
+    private func moveFileToFolder(using info: DropInfo) {
+        guard info.hasItemsConforming(to: File.droppableTypeIdentifiers) else {
+            print("no items found")
+            return
+        }
+
+        let itemProviders = info.itemProviders(for: File.droppableTypeIdentifiers)
+        for itemProvider in itemProviders {
+            print("itemProvider")
+
+            // FIXME: loadObject never calls the completion handler
+            _ = itemProvider.loadObject(ofClass: File.self) { file, error in
+                guard error == nil else {
+                    print("Error: \(error?.localizedDescription ?? "")")
+                    return
+                }
+                print("loadObject successful")
+                guard let file = file as? File else { return }
+                print("file found")
+
+                FileManager.shared.move(file: file, to: folder)
+            }
+        }
     }
 }
 
@@ -101,16 +131,13 @@ struct FileDropDelegate: DropDelegate {
     }
 
     func dropEntered(info: DropInfo) {
+        print("file dropEntered")
         guard
             let fileBeingDragged = fileBeingDragged,
-            fileBeingDragged != fileOverTopOf,
-            let fromIndex = folder.files.firstIndex(of: fileOverTopOf),
-            let toIndex = folder.files.firstIndex(of: fileBeingDragged)
+            fileBeingDragged != fileOverTopOf
         else { return }
 
-        guard folder.files[toIndex].name != fileOverTopOf.name else { return }
-
-        folder.files.move(fromOffsets: IndexSet(integer: fromIndex), toOffset: toIndex > fromIndex ? toIndex + 1 : toIndex)
+        FileManager.shared.move(fileBeingDragged, after: fileOverTopOf)
     }
 
     func dropUpdated(info: DropInfo) -> DropProposal? {
@@ -124,7 +151,8 @@ struct FileDropDelegate: DropDelegate {
 }
 
 struct FolderView_Previews: PreviewProvider {
-    static let folder = Folder(name: "Folder 1", files: [])
+    static let files = (1...3).map { File(name: "file\($0).txt") }
+    static let folder = Folder(name: "Folder 1", files: files)
 
     static var previews: some View {
         FolderView(folder: folder)
