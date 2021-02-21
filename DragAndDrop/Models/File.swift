@@ -1,5 +1,4 @@
 import SwiftUI
-import UniformTypeIdentifiers
 
 struct File: Hashable, Codable, Draggable {
 
@@ -15,12 +14,4 @@ struct File: Hashable, Codable, Draggable {
     init(name: String) {
         self.name = name
     }
-}
-
-protocol Draggable {
-    var jsonString: String { get }
-}
-
-extension Draggable {
-    static var typeIdentifier: String { UTType.utf8PlainText.identifier }
 }
