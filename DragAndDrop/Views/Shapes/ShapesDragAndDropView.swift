@@ -17,6 +17,9 @@ struct ShapesDragAndDropView: View {
                 TriangleView()
                     .onDrag({ NSItemProvider(item: TriangleShape().jsonString as NSString, typeIdentifier: TriangleShape.typeIdentifier) })
                     .onDrop(of: TriangleDropTarget.supportedDropTypes, delegate: TriangleDropTarget())
+                ArchView()
+                    .onDrag({ NSItemProvider(item: ArchShape().jsonString as NSString, typeIdentifier: ArchShape.typeIdentifier) })
+                    .onDrop(of: ArchDropTarget.supportedDropTypes, delegate: ArchDropTarget())
             }
         }
         .padding()
@@ -25,32 +28,20 @@ struct ShapesDragAndDropView: View {
 
 struct CircleShape: Draggable, Codable {
     static var typeIdentifier: String { UTType.plainText.identifier } // FIXME: why do typeIdentifiers only work with UTType and not custom strings?
-
-    var jsonString: String {
-        guard let data = try? JSONEncoder().encode(self) else { return "" }
-
-        return String(data: data, encoding: .utf8) ?? ""
-    }
 }
 
 struct SquareShape: Draggable, Codable {
     static var typeIdentifier: String { UTType.mp3.identifier }
 
-    var jsonString: String {
-        guard let data = try? JSONEncoder().encode(self) else { return "" }
-
-        return String(data: data, encoding: .utf8) ?? ""
-    }
 }
 
 struct TriangleShape: Draggable, Codable {
     static var typeIdentifier: String { UTType.mpeg2Video.identifier }
 
-    var jsonString: String {
-        guard let data = try? JSONEncoder().encode(self) else { return "" }
+}
 
-        return String(data: data, encoding: .utf8) ?? ""
-    }
+struct ArchShape: Draggable, Codable {
+    static var typeIdentifier: String { UTType.application.identifier }
 }
 
 
@@ -65,7 +56,7 @@ struct SquareDropTarget: DropTarget, DropDelegate {
 
     typealias DropObject = SquareShape
 
-    static var supportedDropTypes: [String] = [CircleShape.typeIdentifier, SquareShape.typeIdentifier, TriangleShape.typeIdentifier]
+    static var supportedDropTypes: [String] = [CircleShape.typeIdentifier, SquareShape.typeIdentifier, TriangleShape.typeIdentifier, ArchShape.typeIdentifier]
 }
 
 struct TriangleDropTarget: DropTarget, DropDelegate {
@@ -73,6 +64,13 @@ struct TriangleDropTarget: DropTarget, DropDelegate {
     typealias DropObject = TriangleShape
 
     static var supportedDropTypes: [String] = [TriangleShape.typeIdentifier]
+}
+
+struct ArchDropTarget: DropTarget, DropDelegate {
+
+    typealias DropObject = ArchShape
+
+    static var supportedDropTypes: [String] = []
 }
 
 struct ShapesDragAndDropView_Previews: PreviewProvider {
