@@ -10,7 +10,7 @@ struct FolderDropTarget: DropTarget, DropDelegate {
 
     typealias DropObject = File
 
-    var supportedDropTypes: [String] = [File.typeIdentifier]
+    static var supportedDropTypes: [String] = [File.typeIdentifier]
     let target: Folder
 
     func drop(object: File) {

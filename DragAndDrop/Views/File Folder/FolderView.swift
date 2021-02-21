@@ -10,7 +10,7 @@ struct FolderView: View {
     var body: some View {
         VStack {
             headerView
-                .onDrop(of: [File.typeIdentifier], delegate: FolderDropTarget(target: folder))
+                .onDrop(of: FolderDropTarget.supportedDropTypes, delegate: FolderDropTarget(target: folder))
             filesView
         }
     }
@@ -19,7 +19,7 @@ struct FolderView: View {
         ForEach(folder.files, id: \.self) { file in
             FileView(fileName: file.name)
                 .onDrag({ NSItemProvider(object: file.jsonString as NSString) })
-                .onDrop(of: [File.typeIdentifier], delegate: FileDropTarget(target: file))
+                .onDrop(of: FileDropTarget.supportedDropTypes, delegate: FileDropTarget(target: file))
         }
         .padding(.leading, 8)
     }

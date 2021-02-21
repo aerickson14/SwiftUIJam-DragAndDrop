@@ -1,11 +1,6 @@
-import UniformTypeIdentifiers
 import Foundation
 
-
 protocol Draggable {
+    static var typeIdentifier: String { get }
     var jsonString: String { get }
-}
-
-extension Draggable {
-    static var typeIdentifier: String { UTType.utf8PlainText.identifier }
 }

@@ -3,11 +3,11 @@ import SwiftUI
 protocol DropTarget where DropObject: Codable {
     associatedtype DropObject
 
-    var supportedDropTypes: [String] { get set }
+    static var supportedDropTypes: [String] { get set }
     func drop(object: DropObject)
 }
 
-extension DropTarget {
+extension DropTarget where Self: DropDelegate {
 
     func performDrop(info: DropInfo) -> Bool {
         Logger.log("peformDrop")
@@ -18,14 +18,24 @@ extension DropTarget {
         return true
     }
 
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        let canDrop = !info.itemProviders(for: Self.supportedDropTypes).isEmpty
+        //let canDrop = info.hasItemsConforming(to: supportedDropTypes)
+        Logger.log("Can drop: \(canDrop). Supports: \(Self.supportedDropTypes.joined(separator: ", "))")
+        let operation: DropOperation = canDrop ? .move : .forbidden
+        return DropProposal(operation: operation)
+    }
+    
+    func drop(object: DropObject) {}
+    
     private func fetchObject(from info: DropInfo, onComplete: @escaping (DropObject?) -> Void) {
-        guard info.hasItemsConforming(to: supportedDropTypes) else {
+        guard info.hasItemsConforming(to: Self.supportedDropTypes) else {
             Logger.warn("no items found")
             onComplete(nil)
             return
         }
 
-        let itemProviders = info.itemProviders(for: supportedDropTypes)
+        let itemProviders = info.itemProviders(for: Self.supportedDropTypes)
         for itemProvider in itemProviders {
             _ = itemProvider.loadObject(ofClass: NSString.self) { nsString, error in
                 if let error = error {

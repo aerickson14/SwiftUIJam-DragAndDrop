@@ -1,6 +1,9 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct File: Hashable, Codable, Draggable {
+
+    static var typeIdentifier: String { UTType.utf8PlainText.identifier }
 
     var id = UUID()
     let name: String
@@ -19,7 +22,7 @@ struct File: Hashable, Codable, Draggable {
 struct FileDropTarget: DropTarget, DropDelegate {
     typealias DropObject = File
 
-    var supportedDropTypes = [File.typeIdentifier]
+    static var supportedDropTypes = [File.typeIdentifier]
 
     let target: File
 
