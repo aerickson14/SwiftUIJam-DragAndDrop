@@ -16,29 +16,36 @@ extension DropTarget {
     }
 
     private func fetchFile(from info: DropInfo, onComplete: @escaping (File?) -> Void) {
-        guard info.hasItemsConforming(to: File.droppableTypeIdentifiers) else {
+        guard info.hasItemsConforming(to: [File.typeIdentifier]) else {
             Logger.warn("no items found")
             onComplete(nil)
             return
         }
 
-        let itemProviders = info.itemProviders(for: File.droppableTypeIdentifiers)
+        let itemProviders = info.itemProviders(for: [File.typeIdentifier])
         for itemProvider in itemProviders {
-            _ = itemProvider.loadObject(ofClass: File.self) { file, error in
+            _ = itemProvider.loadObject(ofClass: NSString.self) { nsString, error in
                 if let error = error {
                     Logger.error(error.localizedDescription)
                     return
                 }
                 Logger.log("loadObject successful")
-                guard let file = file as? File else {
-                    Logger.error("unable to find file")
+                guard let jsonString = nsString as? String else {
+                    Logger.error("unable to find file jsonString")
                     onComplete(nil)
                     return
                 }
-                Logger.log("file found")
+                Logger.log("file json found")
+                let file = decode(jsonString)
                 onComplete(file)
             }
         }
+    }
+
+    private func decode(_ string: String) -> File? {
+        guard let data = string.data(using: .utf8) else { return nil }
+
+        return try? JSONDecoder().decode(File.self, from: data)
     }
 }
 
