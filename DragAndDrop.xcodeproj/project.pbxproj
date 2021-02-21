@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		533B178F25E2FC3700E0D8B0 /* ColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B178E25E2FC3700E0D8B0 /* ColumnView.swift */; };
+		533B179225E2FC5200E0D8B0 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B179125E2FC5200E0D8B0 /* ContainerView.swift */; };
+		533B179525E2FC6600E0D8B0 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B179425E2FC6600E0D8B0 /* ItemView.swift */; };
+		533B179825E2FC8300E0D8B0 /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B179725E2FC8300E0D8B0 /* Column.swift */; };
+		533B179B25E2FC9400E0D8B0 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B179A25E2FC9400E0D8B0 /* Container.swift */; };
+		533B179F25E2FCCD00E0D8B0 /* ColumnManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B179E25E2FCCD00E0D8B0 /* ColumnManager.swift */; };
 		5372863B25E1DBC900430AB3 /* DropTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5372863A25E1DBC900430AB3 /* DropTarget.swift */; };
 		5372863E25E1DCF900430AB3 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5372863D25E1DCF900430AB3 /* Logger.swift */; };
 		538A9A2425E2AD2300B3A822 /* Draggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538A9A2325E2AD2300B3A822 /* Draggable.swift */; };
@@ -30,6 +36,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		533B178E25E2FC3700E0D8B0 /* ColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnView.swift; sourceTree = "<group>"; };
+		533B179125E2FC5200E0D8B0 /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
+		533B179425E2FC6600E0D8B0 /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
+		533B179725E2FC8300E0D8B0 /* Column.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
+		533B179A25E2FC9400E0D8B0 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		533B179E25E2FCCD00E0D8B0 /* ColumnManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnManager.swift; sourceTree = "<group>"; };
 		5372863A25E1DBC900430AB3 /* DropTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropTarget.swift; sourceTree = "<group>"; };
 		5372863D25E1DCF900430AB3 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		538A9A2325E2AD2300B3A822 /* Draggable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Draggable.swift; sourceTree = "<group>"; };
@@ -65,6 +77,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		533B178D25E2FC1D00E0D8B0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				533B179725E2FC8300E0D8B0 /* Column.swift */,
+				533B179A25E2FC9400E0D8B0 /* Container.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		533B179D25E2FCBA00E0D8B0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				533B179E25E2FCCD00E0D8B0 /* ColumnManager.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		538A9A2825E2AE1F00B3A822 /* File Folder */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,7 +139,12 @@
 		538A9A4925E2EA1700B3A822 /* Nested */ = {
 			isa = PBXGroup;
 			children = (
+				533B179D25E2FCBA00E0D8B0 /* Helpers */,
+				533B178D25E2FC1D00E0D8B0 /* Models */,
 				538A9A4A25E2EA2800B3A822 /* NestedDragAndDropView.swift */,
+				533B178E25E2FC3700E0D8B0 /* ColumnView.swift */,
+				533B179125E2FC5200E0D8B0 /* ContainerView.swift */,
+				533B179425E2FC6600E0D8B0 /* ItemView.swift */,
 			);
 			path = Nested;
 			sourceTree = "<group>";
@@ -250,10 +284,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				533B179225E2FC5200E0D8B0 /* ContainerView.swift in Sources */,
 				53C8F87E25E0819E00F296A1 /* FileView.swift in Sources */,
+				533B178F25E2FC3700E0D8B0 /* ColumnView.swift in Sources */,
 				538A9A4725E2D88800B3A822 /* StarView.swift in Sources */,
+				533B179525E2FC6600E0D8B0 /* ItemView.swift in Sources */,
 				53C8F87B25E0818400F296A1 /* FolderView.swift in Sources */,
 				538A9A4425E2D34300B3A822 /* ArchView.swift in Sources */,
+				533B179F25E2FCCD00E0D8B0 /* ColumnManager.swift in Sources */,
 				53C8F86725E0476600F296A1 /* ContentView.swift in Sources */,
 				538A9A3325E2B04E00B3A822 /* ShapesDragAndDropView.swift in Sources */,
 				53C8F88425E0848200F296A1 /* FileManager.swift in Sources */,
@@ -262,9 +300,11 @@
 				53C8F86525E0476600F296A1 /* DragAndDropApp.swift in Sources */,
 				538A9A2425E2AD2300B3A822 /* Draggable.swift in Sources */,
 				538A9A3725E2B0A300B3A822 /* SquareView.swift in Sources */,
+				533B179825E2FC8300E0D8B0 /* Column.swift in Sources */,
 				538A9A3E25E2B32400B3A822 /* TriangleView.swift in Sources */,
 				53C8F87825E07DF900F296A1 /* Folder.swift in Sources */,
 				5372863B25E1DBC900430AB3 /* DropTarget.swift in Sources */,
+				533B179B25E2FC9400E0D8B0 /* Container.swift in Sources */,
 				538A9A3A25E2B0FF00B3A822 /* CircleView.swift in Sources */,
 				538A9A2C25E2AE7A00B3A822 /* FileDragAndDropView.swift in Sources */,
 				538A9A4B25E2EA2800B3A822 /* NestedDragAndDropView.swift in Sources */,
