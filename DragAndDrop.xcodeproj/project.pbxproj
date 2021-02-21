@@ -11,6 +11,10 @@
 		5372863E25E1DCF900430AB3 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5372863D25E1DCF900430AB3 /* Logger.swift */; };
 		538A9A2425E2AD2300B3A822 /* Draggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538A9A2325E2AD2300B3A822 /* Draggable.swift */; };
 		538A9A2C25E2AE7A00B3A822 /* FileDragAndDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538A9A2B25E2AE7A00B3A822 /* FileDragAndDropView.swift */; };
+		538A9A3325E2B04E00B3A822 /* ShapesDragAndDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538A9A3225E2B04E00B3A822 /* ShapesDragAndDropView.swift */; };
+		538A9A3725E2B0A300B3A822 /* SquareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538A9A3625E2B0A300B3A822 /* SquareView.swift */; };
+		538A9A3A25E2B0FF00B3A822 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538A9A3925E2B0FF00B3A822 /* CircleView.swift */; };
+		538A9A3E25E2B32400B3A822 /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538A9A3D25E2B32400B3A822 /* TriangleView.swift */; };
 		53C8F86525E0476600F296A1 /* DragAndDropApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8F86425E0476600F296A1 /* DragAndDropApp.swift */; };
 		53C8F86725E0476600F296A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8F86625E0476600F296A1 /* ContentView.swift */; };
 		53C8F86925E0476A00F296A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53C8F86825E0476A00F296A1 /* Assets.xcassets */; };
@@ -27,6 +31,10 @@
 		5372863D25E1DCF900430AB3 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		538A9A2325E2AD2300B3A822 /* Draggable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Draggable.swift; sourceTree = "<group>"; };
 		538A9A2B25E2AE7A00B3A822 /* FileDragAndDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDragAndDropView.swift; sourceTree = "<group>"; };
+		538A9A3225E2B04E00B3A822 /* ShapesDragAndDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapesDragAndDropView.swift; sourceTree = "<group>"; };
+		538A9A3625E2B0A300B3A822 /* SquareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareView.swift; sourceTree = "<group>"; };
+		538A9A3925E2B0FF00B3A822 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		538A9A3D25E2B32400B3A822 /* TriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
 		53C8F86125E0476600F296A1 /* DragAndDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DragAndDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53C8F86425E0476600F296A1 /* DragAndDropApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropApp.swift; sourceTree = "<group>"; };
 		53C8F86625E0476600F296A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -78,6 +86,17 @@
 				53C8F88325E0848200F296A1 /* FileManager.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		538A9A3125E2B02E00B3A822 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				538A9A3225E2B04E00B3A822 /* ShapesDragAndDropView.swift */,
+				538A9A3625E2B0A300B3A822 /* SquareView.swift */,
+				538A9A3925E2B0FF00B3A822 /* CircleView.swift */,
+				538A9A3D25E2B32400B3A822 /* TriangleView.swift */,
+			);
+			path = Shapes;
 			sourceTree = "<group>";
 		};
 		53C8F85825E0476600F296A1 = {
@@ -132,6 +151,7 @@
 			children = (
 				53C8F86625E0476600F296A1 /* ContentView.swift */,
 				538A9A2825E2AE1F00B3A822 /* File Folder */,
+				538A9A3125E2B02E00B3A822 /* Shapes */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -216,13 +236,17 @@
 				53C8F87E25E0819E00F296A1 /* FileView.swift in Sources */,
 				53C8F87B25E0818400F296A1 /* FolderView.swift in Sources */,
 				53C8F86725E0476600F296A1 /* ContentView.swift in Sources */,
+				538A9A3325E2B04E00B3A822 /* ShapesDragAndDropView.swift in Sources */,
 				53C8F88425E0848200F296A1 /* FileManager.swift in Sources */,
 				5372863E25E1DCF900430AB3 /* Logger.swift in Sources */,
 				53C8F87525E07D6500F296A1 /* File.swift in Sources */,
 				53C8F86525E0476600F296A1 /* DragAndDropApp.swift in Sources */,
 				538A9A2425E2AD2300B3A822 /* Draggable.swift in Sources */,
+				538A9A3725E2B0A300B3A822 /* SquareView.swift in Sources */,
+				538A9A3E25E2B32400B3A822 /* TriangleView.swift in Sources */,
 				53C8F87825E07DF900F296A1 /* Folder.swift in Sources */,
 				5372863B25E1DBC900430AB3 /* DropTarget.swift in Sources */,
+				538A9A3A25E2B0FF00B3A822 /* CircleView.swift in Sources */,
 				538A9A2C25E2AE7A00B3A822 /* FileDragAndDropView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
