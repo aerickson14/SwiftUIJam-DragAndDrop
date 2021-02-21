@@ -20,8 +20,6 @@ extension DropTarget where Self: DropDelegate {
 
     func dropUpdated(info: DropInfo) -> DropProposal? {
         let canDrop = !info.itemProviders(for: Self.supportedDropTypes).isEmpty
-        //let canDrop = info.hasItemsConforming(to: supportedDropTypes)
-        Logger.log("Can drop: \(canDrop). Supports: \(Self.supportedDropTypes.joined(separator: ", "))")
         let operation: DropOperation = canDrop ? .move : .forbidden
         return DropProposal(operation: operation)
     }
