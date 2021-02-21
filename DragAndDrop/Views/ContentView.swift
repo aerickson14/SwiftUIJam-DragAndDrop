@@ -9,6 +9,7 @@ struct ContentView: View {
             List {
                 NavigationLink("Files and Folders", destination: FileDragAndDropView())
                 NavigationLink("Shapes", destination: ShapesDragAndDropView())
+                NavigationLink("Nested Containers", destination: NestedDragAndDropView())
             }
             .navigationTitle("SwiftUI Drag and Drop")
         }

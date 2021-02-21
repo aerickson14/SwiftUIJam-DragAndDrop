@@ -17,6 +17,7 @@
 		538A9A3E25E2B32400B3A822 /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538A9A3D25E2B32400B3A822 /* TriangleView.swift */; };
 		538A9A4425E2D34300B3A822 /* ArchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538A9A4325E2D34300B3A822 /* ArchView.swift */; };
 		538A9A4725E2D88800B3A822 /* StarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538A9A4625E2D88800B3A822 /* StarView.swift */; };
+		538A9A4B25E2EA2800B3A822 /* NestedDragAndDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538A9A4A25E2EA2800B3A822 /* NestedDragAndDropView.swift */; };
 		53C8F86525E0476600F296A1 /* DragAndDropApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8F86425E0476600F296A1 /* DragAndDropApp.swift */; };
 		53C8F86725E0476600F296A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8F86625E0476600F296A1 /* ContentView.swift */; };
 		53C8F86925E0476A00F296A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53C8F86825E0476A00F296A1 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		538A9A3D25E2B32400B3A822 /* TriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
 		538A9A4325E2D34300B3A822 /* ArchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchView.swift; sourceTree = "<group>"; };
 		538A9A4625E2D88800B3A822 /* StarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarView.swift; sourceTree = "<group>"; };
+		538A9A4A25E2EA2800B3A822 /* NestedDragAndDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedDragAndDropView.swift; sourceTree = "<group>"; };
 		53C8F86125E0476600F296A1 /* DragAndDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DragAndDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53C8F86425E0476600F296A1 /* DragAndDropApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropApp.swift; sourceTree = "<group>"; };
 		53C8F86625E0476600F296A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -105,6 +107,14 @@
 			path = Shapes;
 			sourceTree = "<group>";
 		};
+		538A9A4925E2EA1700B3A822 /* Nested */ = {
+			isa = PBXGroup;
+			children = (
+				538A9A4A25E2EA2800B3A822 /* NestedDragAndDropView.swift */,
+			);
+			path = Nested;
+			sourceTree = "<group>";
+		};
 		53C8F85825E0476600F296A1 = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +167,7 @@
 			children = (
 				53C8F86625E0476600F296A1 /* ContentView.swift */,
 				538A9A2825E2AE1F00B3A822 /* File Folder */,
+				538A9A4925E2EA1700B3A822 /* Nested */,
 				538A9A3125E2B02E00B3A822 /* Shapes */,
 			);
 			path = Views;
@@ -256,6 +267,7 @@
 				5372863B25E1DBC900430AB3 /* DropTarget.swift in Sources */,
 				538A9A3A25E2B0FF00B3A822 /* CircleView.swift in Sources */,
 				538A9A2C25E2AE7A00B3A822 /* FileDragAndDropView.swift in Sources */,
+				538A9A4B25E2EA2800B3A822 /* NestedDragAndDropView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

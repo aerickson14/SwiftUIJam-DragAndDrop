@@ -14,6 +14,12 @@ Experimented with the ability to specify which objects can be dropped on which d
 
 ![](shapes.gif)
 
+### Nested Containers
+
+Trying something a bit more complex where draggable objects are contained within other draggable objects.
+
+![](nested.gif)
+
 ### Trello Board
 
 Tasks were kept track of during SwiftUI Jam using a [Trello Board](https://trello.com/b/7SiisqL1/swiftuijam-draganddrop)
