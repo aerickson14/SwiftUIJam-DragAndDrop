@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5372863B25E1DBC900430AB3 /* DropTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5372863A25E1DBC900430AB3 /* DropTarget.swift */; };
+		5372863E25E1DCF900430AB3 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5372863D25E1DCF900430AB3 /* Logger.swift */; };
 		53C8F86525E0476600F296A1 /* DragAndDropApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8F86425E0476600F296A1 /* DragAndDropApp.swift */; };
 		53C8F86725E0476600F296A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8F86625E0476600F296A1 /* ContentView.swift */; };
 		53C8F86925E0476A00F296A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53C8F86825E0476A00F296A1 /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5372863A25E1DBC900430AB3 /* DropTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropTarget.swift; sourceTree = "<group>"; };
+		5372863D25E1DCF900430AB3 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		53C8F86125E0476600F296A1 /* DragAndDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DragAndDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53C8F86425E0476600F296A1 /* DragAndDropApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropApp.swift; sourceTree = "<group>"; };
 		53C8F86625E0476600F296A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -84,6 +88,7 @@
 		53C8F88025E0845800F296A1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5372863A25E1DBC900430AB3 /* DropTarget.swift */,
 				53C8F87425E07D6500F296A1 /* File.swift */,
 				53C8F87725E07DF900F296A1 /* Folder.swift */,
 			);
@@ -104,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				53C8F88325E0848200F296A1 /* FileManager.swift */,
+				5372863D25E1DCF900430AB3 /* Logger.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -181,9 +187,11 @@
 				53C8F87B25E0818400F296A1 /* FolderView.swift in Sources */,
 				53C8F86725E0476600F296A1 /* ContentView.swift in Sources */,
 				53C8F88425E0848200F296A1 /* FileManager.swift in Sources */,
+				5372863E25E1DCF900430AB3 /* Logger.swift in Sources */,
 				53C8F87525E07D6500F296A1 /* File.swift in Sources */,
 				53C8F86525E0476600F296A1 /* DragAndDropApp.swift in Sources */,
 				53C8F87825E07DF900F296A1 /* Folder.swift in Sources */,
+				5372863B25E1DBC900430AB3 /* DropTarget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
