@@ -4,20 +4,13 @@ import Foundation
 
 struct ContentView: View {
 
-    @ObservedObject var fileManager: FileManager
-
-    init() {
-        self.fileManager = FileManager.shared
-    }
-
     var body: some View {
-        VStack(spacing: 0) {
-            ForEach(fileManager.folders, id: \.self) { folder in
-                FolderView(folder: folder)
+        NavigationView {
+            List {
+                NavigationLink("Files and Folders", destination: FileDragAndDropView())
             }
-            Spacer()
+            .navigationTitle("SwiftUI Drag and Drop")
         }
-        .padding()
     }
 }
 
