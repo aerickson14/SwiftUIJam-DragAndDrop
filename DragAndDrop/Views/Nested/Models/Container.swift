@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Container: Hashable {
+struct Container: Hashable, Codable {
     let name: String
     let items: [String]
 }

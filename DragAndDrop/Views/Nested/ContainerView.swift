@@ -15,7 +15,6 @@ struct ContainerView: View {
             }
         }
         .cornerRadius(8)
-        .padding()
         .onDrag ({ NSItemProvider(object: name as NSString) })
     }
 }

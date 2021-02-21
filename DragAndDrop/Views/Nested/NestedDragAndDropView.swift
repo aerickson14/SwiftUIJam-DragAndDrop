@@ -9,12 +9,14 @@ struct NestedDragAndDropView: View {
     }
 
     var body: some View {
-        HStack {
-            ForEach(columnManager.columns, id: \.self) { column in
-                ColumnView(title: column.title, containers: column.containers)
+        ScrollView(.horizontal) {
+            HStack {
+                ForEach(columnManager.columns, id: \.self) { column in
+                    ColumnView(column: column)
+                }
             }
+            .padding()
         }
-        .padding()
     }
 }
 
