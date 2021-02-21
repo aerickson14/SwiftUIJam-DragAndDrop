@@ -12,6 +12,9 @@ struct ShapesDragAndDropView: View {
                 SquareView()
                     .onDrag({ NSItemProvider(item: SquareShape().jsonString as NSString, typeIdentifier: SquareShape.typeIdentifier) })
                     .onDrop(of: SquareDropTarget.supportedDropTypes, delegate: SquareDropTarget())
+                StarView()
+                    .onDrag({ NSItemProvider(item: StarShape().jsonString as NSString, typeIdentifier: StarShape.typeIdentifier) })
+                    .onDrop(of: StarDropTarget.supportedDropTypes, delegate: StarDropTarget())
             }
             HStack(spacing: 32) {
                 TriangleView()
@@ -44,19 +47,23 @@ struct ArchShape: Draggable, Codable {
     static var typeIdentifier: String { UTType.application.identifier }
 }
 
+struct StarShape: Draggable, Codable {
+    static var typeIdentifier: String { UTType.bookmark.identifier }
+}
+
 
 struct CircleDropTarget: DropTarget, DropDelegate {
 
     typealias DropObject = CircleShape
 
-    static var supportedDropTypes: [String] = [CircleShape.typeIdentifier]
+    static var supportedDropTypes: [String] = [CircleShape.typeIdentifier, StarShape.typeIdentifier]
 }
 
 struct SquareDropTarget: DropTarget, DropDelegate {
 
     typealias DropObject = SquareShape
 
-    static var supportedDropTypes: [String] = [CircleShape.typeIdentifier, SquareShape.typeIdentifier, TriangleShape.typeIdentifier, ArchShape.typeIdentifier]
+    static var supportedDropTypes: [String] = [CircleShape.typeIdentifier, SquareShape.typeIdentifier, TriangleShape.typeIdentifier, ArchShape.typeIdentifier, StarShape.typeIdentifier]
 }
 
 struct TriangleDropTarget: DropTarget, DropDelegate {
@@ -69,6 +76,13 @@ struct TriangleDropTarget: DropTarget, DropDelegate {
 struct ArchDropTarget: DropTarget, DropDelegate {
 
     typealias DropObject = ArchShape
+
+    static var supportedDropTypes: [String] = []
+}
+
+struct StarDropTarget: DropTarget, DropDelegate {
+
+    typealias DropObject = StarShape
 
     static var supportedDropTypes: [String] = []
 }
