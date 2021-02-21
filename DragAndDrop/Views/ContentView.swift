@@ -8,6 +8,7 @@ struct ContentView: View {
         NavigationView {
             List {
                 NavigationLink("Files and Folders", destination: FileDragAndDropView())
+                NavigationLink("Shapes", destination: ShapesDragAndDropView())
             }
             .navigationTitle("SwiftUI Drag and Drop")
         }

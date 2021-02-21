@@ -1,28 +1,31 @@
 import SwiftUI
 
-protocol DropTarget {
-    func drop(file: File)
+protocol DropTarget where DropObject: Codable {
+    associatedtype DropObject
+
+    var supportedDropTypes: [String] { get set }
+    func drop(object: DropObject)
 }
 
 extension DropTarget {
 
     func performDrop(info: DropInfo) -> Bool {
         Logger.log("peformDrop")
-        fetchFile(from: info, onComplete: { file in
-            guard let file = file else { return }
-            drop(file: file)
+        fetchObject(from: info, onComplete: { object in
+            guard let object = object else { return }
+            drop(object: object)
         })
         return true
     }
 
-    private func fetchFile(from info: DropInfo, onComplete: @escaping (File?) -> Void) {
-        guard info.hasItemsConforming(to: [File.typeIdentifier]) else {
+    private func fetchObject(from info: DropInfo, onComplete: @escaping (DropObject?) -> Void) {
+        guard info.hasItemsConforming(to: supportedDropTypes) else {
             Logger.warn("no items found")
             onComplete(nil)
             return
         }
 
-        let itemProviders = info.itemProviders(for: [File.typeIdentifier])
+        let itemProviders = info.itemProviders(for: supportedDropTypes)
         for itemProvider in itemProviders {
             _ = itemProvider.loadObject(ofClass: NSString.self) { nsString, error in
                 if let error = error {
@@ -35,34 +38,16 @@ extension DropTarget {
                     onComplete(nil)
                     return
                 }
-                Logger.log("file json found")
-                let file = decode(jsonString)
-                onComplete(file)
+                Logger.log("object json found")
+                let object = decode(jsonString)
+                onComplete(object)
             }
         }
     }
 
-    private func decode(_ string: String) -> File? {
+    private func decode(_ string: String) -> DropObject? {
         guard let data = string.data(using: .utf8) else { return nil }
 
-        return try? JSONDecoder().decode(File.self, from: data)
-    }
-}
-
-struct FolderDropTarget: DropTarget, DropDelegate {
-
-    let target: Folder
-
-    func drop(file: File) {
-        FileManager.shared.move(file: file, to: target)
-    }
-}
-
-struct FileDropTarget: DropTarget, DropDelegate {
-
-    let target: File
-
-    func drop(file: File) {
-        FileManager.shared.move(file, after: target)
+        return try? JSONDecoder().decode(DropObject.self, from: data)
     }
 }
