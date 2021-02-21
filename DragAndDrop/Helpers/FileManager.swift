@@ -51,7 +51,8 @@ class FileManager: ObservableObject {
         }
 
         print("moving file \(file.name) after \(afterFile.name)")
-        folder.files.move(fromOffsets: IndexSet(integer: fromIndex), toOffset: toIndex > fromIndex ? toIndex + 1 : toIndex)
+        let toOffset = toIndex > fromIndex ? toIndex + 1 : toIndex
+        folder.files.move(fromOffsets: IndexSet(integer: fromIndex), toOffset: toOffset)
 
         updateFolder(folder)
     }
